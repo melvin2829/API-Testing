@@ -1,0 +1,42 @@
+{
+  "users": [
+    {
+      "name": "david",
+      "email": "david@2345",
+      "id": "1"
+    },
+    {
+      "id": "2",
+      "name": "Bob",
+      "email": "bob@example.com"
+    },
+    {
+      "id": "3",
+      "name": "harish",
+      "email": "harish@2121"
+    },
+    {
+      "id": "3",
+      "name": "harish",
+      "email": "harish@2121"
+    },
+    {
+      "id": "3",
+      "name": "harish",
+      "email": "harish@2121"
+    },
+    {
+      "id": "4",
+      "name": "harish",
+      "email": "harish@2121"
+    }
+  ],
+  "posts": [
+    {
+      "id": "1",
+      "title": "Hello",
+      "body": "World",
+      "userId": 1
+    }
+  ]
+}
