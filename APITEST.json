@@ -1,0 +1,403 @@
+{
+	"info": {
+		"_postman_id": "dd8e5c60-c26c-48ef-aa43-38d309c1db7b",
+		"name": "API testing",
+		"description": "### Welcome to Postman! This is your first collection. \n\nCollections are your starting point for building and testing APIs. You can use this one to:\n\n• Group related requests\n• Test your API in real-world scenarios\n• Document and share your requests\n\nUpdate the name and overview whenever you’re ready to make it yours.\n\n[Learn more about Postman Collections.](https://learning.postman.com/docs/collections/collections-overview/)",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+		"_exporter_id": "48600020",
+		"_collection_link": "https://basutkarmelvin-8019486.postman.co/workspace/Melvin-Basutkar's-Workspace~68498073-8041-47aa-82de-91ddcd8bbb3a/collection/48600020-dd8e5c60-c26c-48ef-aa43-38d309c1db7b?action=share&source=collection_link&creator=48600020"
+	},
+	"item": [
+		{
+			"name": "Get",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.test(\"Content-Type header is 'application/json; charset=utf-8'\", function () {",
+							"    pm.response.to.have.header(\"Content-Type\");",
+							"    pm.expect(pm.response.headers.get(\"Content-Type\")).to.eql(\"application/json; charset=utf-8\");",
+							"});",
+							"",
+							"pm.test(\"Server header contains 'cloudflare'\", function () {",
+							"    pm.response.to.have.header(\"Server\");",
+							"    pm.expect(pm.response.headers.get(\"Server\").toLowerCase()).to.include(\"cloudflare\");",
+							"});",
+							"",
+							"pm.test(\"X-Powered-By header is 'Express'\", function () {",
+							"    pm.response.to.have.header(\"X-Powered-By\");",
+							"    pm.expect(pm.response.headers.get(\"X-Powered-By\")).to.eql(\"Express\");",
+							"});",
+							"",
+							"pm.test(\"Each item in response has userId, id, title, and completed properties\", function () {",
+							"    var jsonData = pm.response.json();",
+							"    pm.expect(jsonData).to.be.an(\"array\");",
+							"    pm.expect(jsonData).to.have.length.above(0);",
+							"    jsonData.forEach(function(item) {",
+							"        pm.expect(item).to.have.property(\"userId\");",
+							"        pm.expect(item).to.have.property(\"id\");",
+							"        pm.expect(item).to.have.property(\"title\");",
+							"        pm.expect(item).to.have.property(\"completed\");",
+							"    });",
+							"});",
+							"pm.test(\"Each item in response has correct data types for userId, id, title, and completed\", function () {",
+							"    var jsonData = pm.response.json();",
+							"    pm.expect(jsonData).to.be.an(\"array\");",
+							"    jsonData.forEach(function(item) {",
+							"        pm.expect(item.userId).to.be.a(\"number\");",
+							"        pm.expect(item.id).to.be.a(\"number\");",
+							"        pm.expect(item.title).to.be.a(\"string\");",
+							"        pm.expect(item.completed).to.be.a(\"boolean\");",
+							"    });",
+							"});",
+							""
+						],
+						"type": "text/javascript",
+						"packages": {},
+						"requests": {}
+					}
+				}
+			],
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "https://jsonplaceholder.typicode.com/todos",
+					"protocol": "https",
+					"host": [
+						"jsonplaceholder",
+						"typicode",
+						"com"
+					],
+					"path": [
+						"todos"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "post",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"userId\": 3,\r\n    \"id\": 201,\r\n    \"title\": \"hello\",\r\n    \"completed\": false\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "https://jsonplaceholder.typicode.com/todos",
+					"protocol": "https",
+					"host": [
+						"jsonplaceholder",
+						"typicode",
+						"com"
+					],
+					"path": [
+						"todos"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "put",
+			"request": {
+				"method": "PUT",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": " {\r\n        \"userId\": 1,\r\n        \"id\": 2,\r\n        \"title\": \"Hacker Harish\",\r\n        \"completed\": true\r\n    }",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "https://jsonplaceholder.typicode.com/todos/2",
+					"protocol": "https",
+					"host": [
+						"jsonplaceholder",
+						"typicode",
+						"com"
+					],
+					"path": [
+						"todos",
+						"2"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "delete",
+			"request": {
+				"method": "DELETE",
+				"header": [],
+				"url": {
+					"raw": "https://jsonplaceholder.typicode.com/todos/3",
+					"protocol": "https",
+					"host": [
+						"jsonplaceholder",
+						"typicode",
+						"com"
+					],
+					"path": [
+						"todos",
+						"3"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "patch",
+			"request": {
+				"method": "PATCH",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n            \r\n     \"title\": \"james bond\"\r\n     \r\n}\r\n        \r\n    ",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "https://jsonplaceholder.typicode.com/todos/2",
+					"protocol": "https",
+					"host": [
+						"jsonplaceholder",
+						"typicode",
+						"com"
+					],
+					"path": [
+						"todos",
+						"2"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "validations",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.test(\"Status code is 200\", function () {",
+							" pm.response.to.have.status(200);",
+							"});",
+							"pm.test(\"Response time under 2000ms\", function () {",
+							" pm.expect(pm.response.responseTime).to.be.below(2000);",
+							"});",
+							"// Header validation",
+							"pm.test(\"Content-Type is application/json\", function () {",
+							" pm.expect(pm.response.headers.get(\"Content-Type\")).to.include(\"application/json\");",
+							"});",
+							"// JSON structure validation",
+							"pm.test(\"User response structure validation\", function () {",
+							" const user = pm.response.json();",
+							" pm.expect(user).to.be.an('object');",
+							" pm.expect(user).to.have.property('id');",
+							" pm.expect(user).to.have.property('name');",
+							" pm.expect(user).to.have.property('username');",
+							" pm.expect(user).to.have.property('email');",
+							" pm.expect(user).to.have.property('address');",
+							" pm.expect(user).to.have.property('phone');",
+							" pm.expect(user).to.have.property('website');",
+							" pm.expect(user).to.have.property('company');",
+							" // Validate data types",
+							" pm.expect(user.id).to.be.a('number');",
+							" pm.expect(user.name).to.be.a('string');",
+							" pm.expect(user.username).to.be.a('string');",
+							" pm.expect(user.email).to.be.a('string');",
+							" pm.expect(user.address).to.be.an('object');",
+							" pm.expect(user.phone).to.be.a('string');",
+							" pm.expect(user.website).to.be.a('string');",
+							" pm.expect(user.company).to.be.an('object');",
+							"});",
+							"// Data value validation",
+							"pm.test(\"Email format is valid\", function () {",
+							" const user = pm.response.json();",
+							" pm.expect(user.email).to.match(/^\\S+@\\S+\\.\\S+$/);",
+							"});",
+							"pm.test(\"Website format is valid (domain check)\", function () {",
+							" const user = pm.response.json();",
+							" // Updated: Check for domain format instead of URL format",
+							" pm.expect(user.website).to.match(/^([a-zA-Z0-9]+\\.)+[a-zA-Z]{2,}$/);",
+							"});",
+							"pm.test(\"Phone format is valid\", function () {",
+							" const user = pm.response.json();",
+							" // Updated: Allow 'x' for extensions in phone numbers",
+							" pm.expect(user.phone).to.match(/^\\d{1}-\\d{3}-\\d{3}-\\d{4} x\\d+$/);",
+							"});",
+							"// Nested object validation",
+							"pm.test(\"Address structure validation\", function () {",
+							" const user = pm.response.json();",
+							" const address = user.address;",
+							" pm.expect(address).to.have.property('street');",
+							" pm.expect(address).to.have.property('suite');",
+							" pm.expect(address).to.have.property('city');",
+							" pm.expect(address).to.have.property('zipcode');",
+							" pm.expect(address).to.have.property('geo');",
+							" pm.expect(address.geo).to.have.property('lat');",
+							" pm.expect(address.geo).to.have.property('lng');",
+							" // Validate geo coordinates format",
+							" pm.expect(address.geo.lat).to.match(/^[-+]?\\d*\\.\\d+$/);",
+							" pm.expect(address.geo.lng).to.match(/^[-+]?\\d*\\.\\d+$/);",
+							"});",
+							"// Company structure validation",
+							"pm.test(\"Company structure validation\", function () {",
+							" const user = pm.response.json();",
+							" const company = user.company;",
+							" pm.expect(company).to.have.property('name');",
+							" pm.expect(company).to.have.property('catchPhrase');",
+							" pm.expect(company).to.have.property('bs');",
+							" // Validate company data types",
+							" pm.expect(company.name).to.be.a('string');",
+							" pm.expect(company.catchPhrase).to.be.a('string');",
+							" pm.expect(company.bs).to.be.a('string');",
+							"});",
+							"// Specific value validation for known user",
+							"pm.test(\"User ID 1 has expected values\", function () {",
+							" const user = pm.response.json();",
+							" if (user.id === 1) {",
+							" pm.expect(user.name).to.equal(\"Leanne Graham\");",
+							" pm.expect(user.username).to.equal(\"Bret\");",
+							" pm.expect(user.email).to.equal(\"Sincere@april.biz\");",
+							" pm.expect(user.phone).to.equal(\"1-770-736-8031 x56442\");",
+							" pm.expect(user.website).to.equal(\"hildegard.org\");",
+							" }",
+							"});",
+							"// Validate value ranges and patterns",
+							"pm.test(\"User ID is positive number\", function () {",
+							" const user = pm.response.json();",
+							" pm.expect(user.id).to.be.above(0);",
+							"});",
+							"pm.test(\"Username is valid format\", function () {",
+							" const user = pm.response.json();",
+							" pm.expect(user.username).to.match(/^Bret$/);",
+							"});",
+							"pm.test(\"Zipcode format is valid\", function () {",
+							" const user = pm.response.json();",
+							" // Basic zipcode validation (allows for different country formats)",
+							" pm.expect(user.address.zipcode).to.match(/^\\d{5}(-\\d{4})?$/);",
+							"});",
+							"// Extract data for future use",
+							"pm.test(\"Extract user data\", function () {",
+							" const user = pm.response.json();",
+							" pm.environment.set(\"user_id\", user.id);",
+							" pm.environment.set(\"user_email\", user.email);",
+							" pm.environment.set(\"user_name\", user.name);",
+							" console.log(`Extracted user: ${user.name} (${user.email})`);",
+							" console.log(`User ID stored: ${pm.environment.get(\"user_id\")}`);",
+							"});",
+							"// Performance logging",
+							"pm.test(\"Log performance metrics\", function () {",
+							" console.log(`Response time: ${pm.response.responseTime}ms`);",
+							" console.log(`Response size: ${pm.response.responseSize} bytes`);",
+							" console.log(`Status: ${pm.response.code} ${pm.response.status}`);",
+							"});",
+							"// Final summary",
+							"pm.test(\"All validations completed\", function () {",
+							" console.log(\"✅ All user data validation tests executed\");",
+							"});",
+							""
+						],
+						"type": "text/javascript",
+						"packages": {},
+						"requests": {}
+					}
+				}
+			],
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "https://jsonplaceholder.typicode.com/users/1",
+					"protocol": "https",
+					"host": [
+						"jsonplaceholder",
+						"typicode",
+						"com"
+					],
+					"path": [
+						"users",
+						"1"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Pre-Request",
+			"event": [
+				{
+					"listen": "prerequest",
+					"script": {
+						"exec": [
+							"// Set base URL and endpoint\r",
+							"\r",
+							"pm.environment.set(\"baseUrl\", \"https://jsonplaceholder.typicode.com\");\r",
+							"\r",
+							"pm.environment.set(\"albumsEndpoint\", \"/albums\");\r",
+							"\r",
+							"\r",
+							"// Construct full URL\r",
+							"\r",
+							"let fullUrl = pm.environment.get(\"baseUrl\") + pm.environment.get(\"albumsEndpoint\");\r",
+							"\r",
+							"pm.environment.set(\"fullAlbumsUrl\", fullUrl);\r",
+							"\r",
+							"\r",
+							"// Optional: Log to console for debugging\r",
+							"\r",
+							"console.log(\"Requesting albums from:\", fullUrl);"
+						],
+						"type": "text/javascript",
+						"packages": {},
+						"requests": {}
+					}
+				},
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							""
+						],
+						"type": "text/javascript",
+						"packages": {},
+						"requests": {}
+					}
+				}
+			],
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "https://jsonplaceholder.typicode.com/",
+					"protocol": "https",
+					"host": [
+						"jsonplaceholder",
+						"typicode",
+						"com"
+					],
+					"path": [
+						""
+					]
+				}
+			},
+			"response": []
+		}
+	]
+}
